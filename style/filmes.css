@@ -1,0 +1,124 @@
+.filmes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 14px;
+    transition: opacity 0.22s;
+}
+
+.filmes.is-changing {
+    opacity: 0;
+}
+
+.filmes .empty {
+    grid-column: 1 / -1;
+}
+
+.filme:nth-child(even) {
+    margin-top: 34px;
+    margin-bottom: -34px;
+}
+
+.poster {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px 14px;
+    border-radius: 16px;
+    overflow: hidden;
+    color: var(--paper);
+    background:
+        radial-gradient(120% 70% at 20% 0%, rgba(255, 255, 255, 0.28), transparent 55%),
+        linear-gradient(165deg, var(--a), var(--b));
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.5s var(--ease-out), box-shadow 0.5s;
+}
+
+.poster::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-out);
+}
+
+.filme:hover .poster {
+    transform: translateY(-6px) rotate(-1deg);
+    box-shadow: var(--shadow-lift);
+}
+
+.filme:hover .poster::after {
+    transform: translateX(120%);
+}
+
+.poster-ano {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    opacity: 0.8;
+}
+
+.poster-titulo {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.1;
+    margin-top: 4px;
+}
+
+.poster-selo {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: rgba(255, 250, 247, 0.9);
+    color: var(--wine-deep);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.filme-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 4px 0;
+    font-size: 0.75rem;
+}
+
+.filme-genero {
+    color: var(--muted);
+}
+
+.estrelas {
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+.estrelas i {
+    font-style: normal;
+    color: var(--line);
+}
+
+.filme-pendente {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--wine);
+}
+
+@media (min-width: 640px) {
+    .filmes { grid-template-columns: repeat(3, 1fr); }
+    .filme:nth-child(even) { margin: 0; }
+    .filme:nth-child(3n + 2) { margin-top: 34px; margin-bottom: -34px; }
+}

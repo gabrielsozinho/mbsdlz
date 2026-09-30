@@ -1,51 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap"
-        rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style/global.css">
     <link rel="stylesheet" href="./style/login.css">
-
-    <script type="module" src="./script/login.js"></script>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#fbf3ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Nós">
     <script type="module" src="./script/auth.js"></script>
-    <title>Login</title>
+    <script type="module" src="./script/login.js"></script>
+    <title>Entrar · Nós</title>
 </head>
+<body class="login">
+    <main class="login-container">
+        <div class="login-selo rise" style="--i:0" aria-hidden="true">♥</div>
+        <p class="eyebrow rise" style="--i:1">Só pra nós dois</p>
+        <h1 class="login-titulo rise" style="--i:2"><span class="script">Nós</span></h1>
+        <p class="login-lead rise" style="--i:3">Entre para abrir o nosso cantinho.</p>
 
-<body>
+        <form id="loginForm" class="rise" style="--i:4" novalidate>
+            <label class="campo">
+                <input type="email" id="username" placeholder=" " autocomplete="username" required>
+                <span>E-mail</span>
+            </label>
 
-    <div class="login-container">
+            <label class="campo">
+                <input type="password" id="password" placeholder=" " autocomplete="current-password" required>
+                <span>Senha</span>
+            </label>
 
-        <h1>Login</h1>
+            <p class="login-erro" id="loginErro" role="alert"></p>
 
-        <form id="loginForm">
-
-            <input
-                type="email"
-                id="username"
-                placeholder="E-mail"
-                autocomplete="username"
-                required
-            >
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Senha"
-                autocomplete="current-password"
-                required
-            >
-
-            <button type="submit">Entrar</button>
-
+            <button type="submit" class="btn" id="entrar">Entrar</button>
         </form>
-
-    </div>
-
+    </main>
 </body>
-
 </html>

@@ -1,0 +1,149 @@
+.sorteio {
+    padding: 28px 24px;
+    text-align: center;
+    background:
+        radial-gradient(100% 80% at 50% 0%, rgba(232, 180, 184, 0.5), transparent 70%),
+        var(--card);
+}
+
+.sorteio-label {
+    margin: 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.sorteio-resultado {
+    min-height: 2.6em;
+    display: grid;
+    place-items: center;
+    margin: 12px 0 18px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    color: var(--wine-deep);
+    transition: filter 0.2s;
+}
+
+.sorteio-resultado.is-rolling {
+    filter: blur(1px);
+    color: var(--muted);
+}
+
+.sorteio-resultado.is-done {
+    animation: heartbeat 0.7s ease-in-out;
+    color: var(--wine);
+}
+
+.sorteio .btn:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.progresso-dates {
+    margin: 30px 0 10px;
+}
+
+.progresso-dates p {
+    margin: 0 0 8px;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.progresso-dates strong {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--wine);
+}
+
+.progresso {
+    height: 6px;
+    border-radius: 99px;
+    background: var(--paper-2);
+    overflow: hidden;
+}
+
+.progresso-barra {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--wine));
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 1.6s var(--ease-out);
+}
+
+.dates-grupo {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 34px 0 12px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: var(--wine-deep);
+}
+
+.dates-grupo span {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.dates-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+}
+
+.date:nth-child(3n + 2) {
+    margin-left: 16px;
+}
+
+.date-check {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px dashed var(--wine);
+    display: grid;
+    place-items: center;
+}
+
+.date.is-feito .date-check {
+    border-style: solid;
+    background: var(--wine);
+}
+
+.date.is-feito .date-check::after {
+    content: "♥";
+    color: var(--paper);
+    font-size: 0.7rem;
+}
+
+.date-info strong {
+    display: block;
+    font-weight: 500;
+    font-size: 0.92rem;
+}
+
+.date.is-feito .date-info strong {
+    color: var(--muted);
+}
+
+.date-info small {
+    font-size: 0.72rem;
+    color: var(--muted);
+}

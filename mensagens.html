@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style/global.css">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#fbf3ee">
+    <link rel="apple-touch-icon" href="./assets/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Nós">
+    <script type="module" src="./script/auth.js"></script>
+    <script type="module" src="./script/app.js"></script>
+    <link rel="stylesheet" href="./style/mensagens.css">
+    <script type="module" src="./script/mensagens.js"></script>
+    <title>Cartinhas · Nós</title>
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <p class="eyebrow rise" style="--i:0">Correio do coração</p>
+            <h1 class="page-title rise" style="--i:1">Cartinhas <span class="script">pra você</span></h1>
+            <p class="page-lead rise" style="--i:2">Escolha um envelope e abra com carinho.</p>
+        </header>
+
+        <section class="envelopes" id="envelopes"></section>
+    </main>
+
+    <div class="carta-overlay" id="cartaOverlay" hidden>
+        <article class="carta" id="carta" role="dialog" aria-modal="true" aria-labelledby="cartaTitulo">
+            <button class="carta-fechar" id="fecharCarta" aria-label="Fechar">×</button>
+            <p class="carta-data" id="cartaData"></p>
+            <h2 class="carta-titulo" id="cartaTitulo"></h2>
+            <p class="carta-texto" id="cartaTexto"></p>
+            <p class="carta-assinatura" id="cartaAssinatura"></p>
+        </article>
+    </div>
+</body>
+</html>

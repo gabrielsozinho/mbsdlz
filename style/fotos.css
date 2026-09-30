@@ -1,0 +1,185 @@
+.mural {
+    columns: 2;
+    column-gap: 14px;
+    padding-top: 6px;
+}
+
+.polaroid {
+    display: block;
+    width: 100%;
+    margin: 0 0 18px;
+    padding: 10px 10px 14px;
+    border: none;
+    background: #fffdfb;
+    border-radius: 6px;
+    box-shadow: var(--shadow-soft);
+    text-align: left;
+    break-inside: avoid;
+    rotate: var(--rot);
+    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out), rotate 0.5s var(--ease-spring), box-shadow 0.4s, scale 0.4s var(--ease-spring);
+}
+
+.polaroid:hover {
+    rotate: 0deg;
+    scale: 1.03;
+    box-shadow: var(--shadow-lift);
+}
+
+.polaroid:active {
+    scale: 0.97;
+}
+
+.polaroid img,
+.polaroid .foto-vazia {
+    width: 100%;
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+.polaroid:nth-child(3n + 1) img,
+.polaroid:nth-child(3n + 1) .foto-vazia {
+    aspect-ratio: 3 / 4;
+}
+
+.polaroid:nth-child(3n + 2) img,
+.polaroid:nth-child(3n + 2) .foto-vazia {
+    aspect-ratio: 1;
+}
+
+.polaroid:nth-child(3n) img,
+.polaroid:nth-child(3n) .foto-vazia {
+    aspect-ratio: 4 / 5;
+}
+
+.foto-vazia {
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.6), transparent 45%),
+        linear-gradient(150deg, var(--a), var(--b));
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 2rem;
+}
+
+.polaroid-legenda {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--font-script);
+    font-size: 1.45rem;
+    line-height: 1.1;
+    color: var(--wine-deep);
+}
+
+.polaroid-data {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(59, 26, 36, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.35s;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox.is-open {
+    opacity: 1;
+}
+
+.lightbox-polaroid {
+    margin: 0;
+    width: min(420px, 100%);
+    padding: 14px 14px 20px;
+    background: #fffdfb;
+    border-radius: 8px;
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: scale(0.9) rotate(-2deg);
+}
+
+.lightbox-polaroid.is-in {
+    animation: foto-in 0.55s var(--ease-spring) forwards;
+}
+
+@keyframes foto-in {
+    to { opacity: 1; transform: none; }
+}
+
+.lightbox-polaroid img,
+.lightbox-polaroid .foto-vazia {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 4px;
+    font-size: 4rem;
+}
+
+.lightbox-polaroid figcaption {
+    margin-top: 14px;
+    font-family: var(--font-script);
+    font-size: 2rem;
+    color: var(--wine-deep);
+    text-align: center;
+}
+
+.lightbox-polaroid figcaption small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.lightbox-fechar,
+.lightbox-nav {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 250, 247, 0.16);
+    color: var(--paper);
+    font-size: 1.8rem;
+    line-height: 1;
+    transition: background 0.3s, transform 0.3s var(--ease-spring);
+}
+
+.lightbox-fechar:hover,
+.lightbox-nav:hover {
+    background: rgba(255, 250, 247, 0.3);
+    transform: scale(1.08);
+}
+
+.lightbox-fechar {
+    top: calc(18px + env(safe-area-inset-top));
+    right: 18px;
+}
+
+.lightbox-nav {
+    top: 50%;
+    margin-top: -23px;
+}
+
+.anterior { left: 10px; }
+.proxima { right: 10px; }
+
+@media (min-width: 640px) {
+    .mural { columns: 3; }
+}
