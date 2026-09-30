@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="./style/index.css">
     <script src="./script/index.js"></script>
     <script type="module" src="script/auth.js"></script>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#e8b4b8">
+
+    <!-- Compatibilidade com iPhone -->
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Nós">
     <title>MBS ♥ DLZ</title>
 </head>
 <body>
@@ -58,5 +66,17 @@
         <div class="bottomNavItem" id="menu">
             <img src="assets/menu.svg" alt="Menu">
         </div>
+
+    <script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker.register("./service-worker.js")
+                .then(() => console.log("Aplicativo pronto!"))
+                .catch((error) => {
+                    console.error("Erro ao registrar o Service Worker:", error);
+                });
+        });
+    }
+    </script>
 </body>
 </html>

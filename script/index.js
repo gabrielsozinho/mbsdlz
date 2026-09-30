@@ -16,3 +16,9 @@ function calcularDias() {
 }
 
 window.addEventListener("load", calcularDias);
+
+async function sair() {
+    await supabase.auth.signOut();
+
+    window.location.href = "login.html";
+}
