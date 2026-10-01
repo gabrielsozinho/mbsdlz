@@ -1,0 +1,205 @@
+.toca-discos {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 22px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, var(--wine-deep), var(--wine));
+    border-color: transparent;
+    color: var(--paper);
+    overflow: hidden;
+}
+
+.vinil {
+    flex: none;
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(circle, transparent 30%, rgba(255, 255, 255, 0.06) 31%, transparent 33%, rgba(255, 255, 255, 0.05) 45%, transparent 47%, rgba(255, 255, 255, 0.05) 60%, transparent 62%),
+        conic-gradient(from 30deg, #2a1a1f, #3d272d, #2a1a1f, #3d272d, #2a1a1f);
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(255, 255, 255, 0.05);
+    animation: girar 3.2s linear infinite;
+    animation-play-state: paused;
+    margin-left: -48px;
+    transition: margin 0.8s var(--ease-spring);
+}
+
+.toca-discos.is-playing .vinil {
+    animation-play-state: running;
+    margin-left: 0;
+}
+
+.vinil-rotulo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--rose);
+    color: var(--wine-deep);
+    font-size: 0.9rem;
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+.agora {
+    min-width: 0;
+}
+
+.agora-label {
+    margin: 0;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+}
+
+.agora-titulo {
+    margin: 6px 0 2px;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    line-height: 1.15;
+}
+
+.agora-titulo.troca {
+    animation: rise 0.6s var(--ease-out);
+}
+
+.agora-artista {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--blush);
+    opacity: 0.8;
+}
+
+.equalizador {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 16px;
+    margin-top: 12px;
+}
+
+.equalizador i {
+    width: 3px;
+    height: 100%;
+    border-radius: 2px;
+    background: var(--rose);
+    transform-origin: bottom;
+    transform: scaleY(0.25);
+}
+
+.is-playing .equalizador i {
+    animation: eq 0.9s ease-in-out infinite alternate;
+}
+
+.equalizador i:nth-child(2) { animation-delay: -0.3s; }
+.equalizador i:nth-child(3) { animation-delay: -0.6s; }
+.equalizador i:nth-child(4) { animation-delay: -0.15s; }
+
+@keyframes eq {
+    0% { transform: scaleY(0.2); }
+    50% { transform: scaleY(1); }
+    100% { transform: scaleY(0.45); }
+}
+
+.faixas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+}
+
+.faixa {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 6px;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    background: none;
+    text-align: left;
+    color: var(--ink);
+    transition: background 0.3s, padding 0.4s var(--ease-out);
+}
+
+.faixa:hover {
+    background: rgba(244, 211, 211, 0.4);
+    padding-left: 14px;
+}
+
+.faixa-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+    width: 26px;
+}
+
+.faixa-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.faixa-info strong {
+    display: block;
+    font-weight: 500;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.faixa-info small {
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.faixa-play {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid var(--wine);
+    position: relative;
+    transition: background 0.3s, transform 0.35s var(--ease-spring);
+}
+
+.faixa-play::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 52%;
+    border-style: solid;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent var(--wine);
+    transform: translate(-50%, -50%);
+}
+
+.faixa:hover .faixa-play {
+    transform: scale(1.1);
+}
+
+.faixa.is-playing .faixa-num,
+.faixa.is-playing strong {
+    color: var(--wine);
+}
+
+.faixa.is-playing .faixa-play {
+    background: var(--wine);
+}
+
+.faixa.is-playing .faixa-play::before {
+    width: 10px;
+    height: 12px;
+    border: none;
+    border-left: 3px solid var(--paper);
+    border-right: 3px solid var(--paper);
+    left: 50%;
+}

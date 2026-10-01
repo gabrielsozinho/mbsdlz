@@ -1,10 +1,19 @@
-const CACHE_NAME = "nos-v1";
+const CACHE_NAME = "nos-v2";
 
 const FILES_TO_CACHE = [
     "/",
     "/login.html",
     "/index.html",
-    "/manifest.json"
+    "/historia.html",
+    "/fotos.html",
+    "/mensagens.html",
+    "/musicas.html",
+    "/filmes.html",
+    "/dates.html",
+    "/manifest.json",
+    "/style/global.css",
+    "/script/app.js",
+    "/script/data.js"
 ];
 
 self.addEventListener("install", (event) => {

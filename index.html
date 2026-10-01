@@ -2,81 +2,70 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style/index.css">
-    <script src="./script/index.js"></script>
-    <script type="module" src="script/auth.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style/global.css">
     <link rel="manifest" href="./manifest.json">
-    <meta name="theme-color" content="#e8b4b8">
-
-    <!-- Compatibilidade com iPhone -->
-    <link rel="apple-touch-icon" href="./icons/icon-192.png">
+    <meta name="theme-color" content="#fbf3ee">
+    <link rel="apple-touch-icon" href="./assets/icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Nós">
+    <script type="module" src="./script/auth.js"></script>
+    <script type="module" src="./script/app.js"></script>
+    <link rel="stylesheet" href="./style/index.css">
+    <script type="module" src="./script/index.js"></script>
     <title>MBS ♥ DLZ</title>
 </head>
 <body>
-    <header>
-        <div class="menu"></div>
-    </header>
+    <main class="page home">
+        <section class="hero">
+            <p class="eyebrow rise" style="--i:0">MBS &amp; DLZ</p>
+            <h1 class="hero-title rise" style="--i:1">
+                <span class="script">Nós</span>
+                <span class="hero-heart" id="coracao" role="button" tabindex="0" aria-label="Enviar corações">♥</span>
+            </h1>
+            <p class="hero-frase rise" style="--i:2" id="frase" aria-live="polite"></p>
+        </section>
 
-    <div class="container">
-        <div class="content">
-            <h1>Nós ♥</h1>
-            <p>Frase fofa...</p>
-        </div>
-        <div class="contagem">
-            Estamos juntos há <span id="dias">0</span> dias
-            <div class="contagensMenor">
-                <div class="contagemMenor">
-                    <h4 id="diasVista" class="contagemTextoMenor">00</h4>
-                    <p>Desde o primeiro dia</p>
-                </div>
-                <div class="contagemMenor">
-                    <h4 id="diasEncontro" class="contagemTextoMenor">00</h4>
-                    <p>Desde o primeiro encontro</p>
-                </div>
-                <div class="contagemMenor">
-                    <h4 id="diasBeijo" class="contagemTextoMenor">00</h4>
-                    <p>Desde o nosso primeiro beijo</p>
-                </div>
+        <section class="contador card rise" style="--i:3">
+            <p class="contador-label">Estamos juntos há</p>
+            <p class="contador-numero"><span id="dias">0</span><small>dias</small></p>
+            <p class="contador-detalhe" id="detalhe"></p>
+            <div class="progresso" aria-hidden="true">
+                <div class="progresso-barra" id="progresso"></div>
             </div>
-        </div>
-    </div>
+            <p class="contador-proximo" id="proximo"></p>
+        </section>
 
-    <div class="bottomNav">
-        <div class="bottomNavItem">
-            <a href="./index.html">
-                <img src="assets/home.svg" alt="Inicio">
-                
-            </a>
-        </div>
-        <div class="bottomNavItem">
-            <a href="./historia.html">
-                <img src="assets/historia.svg" alt="Historia">
-            </a>
-        </div>
-        <div class="bottomNavItem">
-            <a href="./fotos.html">
-                <img src="assets/fotos.svg" alt="Fotos">
-            </a>
-        </div>
-        <div class="bottomNavItem" id="menu">
-            <img src="assets/menu.svg" alt="Menu">
-        </div>
+        <section class="marcos">
+            <article class="marco card reveal" style="--i:0">
+                <span class="marco-num" id="diasVista">00</span>
+                <p>dias desde o <em>primeiro olhar</em></p>
+            </article>
+            <article class="marco card reveal" style="--i:1">
+                <span class="marco-num" id="diasEncontro">00</span>
+                <p>dias desde o <em>primeiro encontro</em></p>
+            </article>
+            <article class="marco card reveal" style="--i:2">
+                <span class="marco-num" id="diasBeijo">00</span>
+                <p>dias desde o <em>primeiro beijo</em></p>
+            </article>
+        </section>
 
-    <script>
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-            navigator.serviceWorker.register("./service-worker.js")
-                .then(() => console.log("Aplicativo pronto!"))
-                .catch((error) => {
-                    console.error("Erro ao registrar o Service Worker:", error);
-                });
-        });
-    }
-    </script>
+        <section class="atalhos">
+            <h2 class="secao-titulo reveal">Por aqui tem <em>mais de nós</em></h2>
+            <div class="atalhos-trilho">
+                <a href="./historia.html" class="atalho reveal" style="--i:0"><span>01</span>Nossa história</a>
+                <a href="./fotos.html" class="atalho reveal" style="--i:1"><span>02</span>Fotos</a>
+                <a href="./mensagens.html" class="atalho reveal" style="--i:2"><span>03</span>Cartinhas</a>
+                <a href="./musicas.html" class="atalho reveal" style="--i:3"><span>04</span>Nossa trilha</a>
+                <a href="./filmes.html" class="atalho reveal" style="--i:4"><span>05</span>Filmes</a>
+                <a href="./dates.html" class="atalho reveal" style="--i:5"><span>06</span>Dates</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
