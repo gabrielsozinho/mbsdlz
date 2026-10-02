@@ -1,0 +1,592 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: hsl(337, 100%, 80%);
+    color: black;
+    min-height: 100vh;
+}
+
+/* =========================
+   PÁGINA
+========================= */
+
+.dates-page {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 18px 50px;
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.dates-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.dates-header h1 {
+    font-family: Georgia, serif;
+    font-size: 2.1rem;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.dates-header p {
+    font-size: 0.95rem;
+    color: #111111;
+}
+
+/* =========================
+   BOTÃO ALEATÓRIO
+========================= */
+
+.random-button {
+    width: 100%;
+    border: none;
+    border-radius: 16px;
+    padding: 15px 20px;
+
+    background: #af0052;
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 15px rgba(155, 98, 104, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+
+    margin-bottom: 25px;
+}
+
+.random-button:hover {
+    background: #af0052;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(155, 98, 104, 0.2);
+}
+
+.random-button:active {
+    transform: translateY(0);
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+/* Pesquisa */
+
+#searchInput {
+    width: 100%;
+    padding: 13px 16px;
+
+    border: 1px solid #ead7d5;
+    border-radius: 14px;
+
+    background: white;
+    color: #4b3b3b;
+
+    font-size: 0.95rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#searchInput::placeholder {
+    color: #b39d9d;
+}
+
+#searchInput:focus {
+    border-color: #d99da3;
+    box-shadow: 0 0 0 3px rgba(232, 180, 184, 0.2);
+}
+
+/* Botões de filtro */
+
+.filter-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.filter {
+    border: 1px solid #af0052;
+    background: white;
+
+    color: #806c6c;
+
+    padding: 10px 8px;
+    border-radius: 12px;
+
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.filter:hover {
+    border-color: #af0052;
+}
+
+.filter.active {
+    background: #af0052;
+    border-color: #af0052;
+    color: white;
+}
+
+/* Select */
+
+#sortSelect {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid #ead7d5;
+    border-radius: 14px;
+
+    background: white;
+    color: #806c6c;
+
+    font-size: 0.9rem;
+
+    cursor: pointer;
+    outline: none;
+}
+
+/* =========================
+   LISTA
+========================= */
+
+.dates-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* =========================
+   CARD DE DATE
+========================= */
+
+.date-card {
+    background: white;
+
+    border: 1px solid #f0dfdd;
+    border-radius: 18px;
+
+    padding: 18px;
+
+    box-shadow: 0 4px 15px rgba(100, 70, 70, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.date-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(100, 70, 70, 0.09);
+}
+
+/* Card concluído */
+
+.date-card.done {
+    background: #fffafa;
+    border-color: #e8c8ca;
+}
+
+/* Cabeçalho do card */
+
+.date-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-bottom: 8px;
+}
+
+.date-card h3 {
+    font-family: Georgia, serif;
+    font-size: 1.15rem;
+    color: #634b4d;
+    line-height: 1.3;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.date-status {
+    flex-shrink: 0;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.date-status.planned {
+    background: #f6e8e6;
+    color: #a06d70;
+}
+
+.date-status.done {
+    background: #e5f1e7;
+    color: #63836a;
+}
+
+/* =========================
+   ADICIONAR DATE
+========================= */
+
+.add-date-section {
+    margin-bottom: 25px;
+}
+
+.add-date-toggle {
+    width: 100%;
+
+    padding: 13px 18px;
+
+    border: 1px dashed #d9afb2;
+    border-radius: 14px;
+
+    background: transparent;
+
+    color: #a06d70;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.add-date-toggle:hover {
+    background: #fff0ee;
+    border-color: #c99095;
+}
+
+/* Formulário */
+
+.add-date-form {
+    margin-top: 12px;
+
+    padding: 20px;
+
+    background: white;
+
+    border: 1px solid #ead7d5;
+    border-radius: 18px;
+
+    box-shadow: 0 5px 20px rgba(100, 70, 70, 0.07);
+}
+
+.add-date-form h2 {
+    font-family: Georgia, serif;
+
+    font-size: 1.3rem;
+
+    color: #8f5f63;
+
+    margin-bottom: 15px;
+}
+
+.add-date-form input,
+.add-date-form textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    margin-bottom: 10px;
+
+    border: 1px solid #ead7d5;
+    border-radius: 12px;
+
+    background: #fffafa;
+
+    color: #4b3b3b;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    outline: none;
+}
+
+.add-date-form textarea {
+    resize: vertical;
+}
+
+.add-date-form input:focus,
+.add-date-form textarea:focus {
+    border-color: #d99da3;
+
+    box-shadow: 0 0 0 3px rgba(232, 180, 184, 0.2);
+}
+
+/* Botões */
+
+.form-buttons {
+    display: flex;
+    gap: 8px;
+
+    margin-top: 5px;
+}
+
+.cancel-button,
+.save-button {
+    flex: 1;
+
+    padding: 11px;
+
+    border-radius: 11px;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.cancel-button {
+    border: 1px solid #ead7d5;
+
+    background: white;
+
+    color: #806c6c;
+}
+
+.save-button {
+    border: none;
+
+    background: #e8b4b8;
+
+    color: white;
+}
+
+.save-button:hover {
+    background: #d99da3;
+}
+
+/* Classe utilizada pelo JS */
+
+.hidden {
+    display: none;
+}
+
+
+.date-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.delete-button {
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #fff0ee;
+
+    color: #b9787d;
+
+    cursor: pointer;
+
+    font-size: 0.8rem;
+
+    transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+    background: #f5d8d5;
+    transform: scale(1.05);
+}
+
+/* =========================
+   DESCRIÇÃO
+========================= */
+
+.date-description {
+    color: #806f6f;
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    margin-bottom: 12px;
+}
+
+/* =========================
+   CATEGORIA
+========================= */
+
+.date-category {
+    display: inline-block;
+
+    background: #dd1070;
+    color: #ffffff;
+
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    font-size: 0.72rem;
+
+    margin-bottom: 12px;
+}
+
+/* =========================
+   RODAPÉ DO CARD
+========================= */
+
+.date-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #f2e6e4;
+}
+
+.completed-date {
+    font-size: 0.75rem;
+    color: #9d8a8a;
+}
+
+/* =========================
+   BOTÃO CONCLUIR
+========================= */
+
+.complete-button {
+    border: none;
+
+    background: #af0052;
+    color: white;
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.complete-button:hover {
+    background: #d99da3;
+    transform: translateY(-1px);
+}
+
+.complete-button.undo {
+    background: #eee1df;
+    color: #806c6c;
+}
+
+.complete-button.undo:hover {
+    background: #e5d5d3;
+}
+
+/* =========================
+   ESTADO VAZIO
+========================= */
+
+.empty-state {
+    text-align: center;
+
+    padding: 50px 20px;
+
+    color: #9d8989;
+}
+
+.empty-state::before {
+    content: "♡";
+
+    display: block;
+
+    font-size: 2.5rem;
+
+    color: #af0052;
+
+    margin-bottom: 10px;
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 700px) {
+
+    .dates-page {
+        padding: 50px 25px 70px;
+    }
+
+    .dates-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .filters {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+    }
+
+    #searchInput {
+        min-width: 0;
+    }
+
+    .filter-buttons {
+        width: 270px;
+    }
+
+    #sortSelect {
+        width: 170px;
+    }
+
+    .dates-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .random-button {
+        max-width: 350px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

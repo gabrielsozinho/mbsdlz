@@ -193,6 +193,128 @@ body, html{
     font-size: 0.95rem;
 }
 
+.hidden{
+    display: none;
+}
+
+.dates{
+    padding-bottom: 1000px;
+}
+
+.datesSistema{
+    background-color: hsl(337, 100%, 90%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 28px;
+    padding-bottom: 50px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.datesFeitos, .datesTotais, .contagemDates p {
+    font-size: 48px;
+    font-weight: bold;
+    color: hsl(337, 100%, 30%);
+}
+
+.contagemDates{
+    display: flex;
+}
+
+.random-date-result {
+    margin: 20px auto;
+
+    padding: 22px;
+
+    max-width: 500px;
+
+    background: #fff;
+
+    border: 1px solid hsl(337, 100%, 80%);;
+    border-radius: 20px;
+
+    box-shadow: 0 6px 20px rgba(100, 70, 70, 0.08);
+
+    animation: showDate 0.3s ease;
+}
+
+.random-date-category {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    margin-bottom: 10px;
+
+    border-radius: 20px;
+
+    background: #faf0ee;
+
+    color: #000000;
+
+    font-size: 0.75rem;
+}
+
+.random-date-result h4 {
+    margin-bottom: 8px;
+
+    font-family: Georgia, serif;
+
+    font-size: 1.4rem;
+
+    color: #050505;
+}
+
+.random-date-result p {
+    margin-bottom: 15px;
+
+    color: #080808;
+
+    line-height: 1.5;
+}
+
+.new-random-button {
+    padding: 9px 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #f3dedf;
+
+    color: #0e0e0e;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes showDate {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.openDates{
+    color: black;
+    padding-top: 5%;
+}
+
 
 
 .bottomNav {

@@ -6,6 +6,14 @@ const randomDateBtn = document.getElementById("randomDateBtn");
 
 const searchInput = document.getElementById("searchInput");
 const sortSelect = document.getElementById("sortSelect");
+const toggleAddDate = document.getElementById("toggleAddDate");
+const addDateForm = document.getElementById("addDateForm");
+const cancelAddDate = document.getElementById("cancelAddDate");
+
+const newTitle = document.getElementById("newTitle");
+const newDescription = document.getElementById("newDescription");
+const newCategory = document.getElementById("newCategory");
+const newLocation = document.getElementById("newLocation");
 
 let allDates = [];
 let currentFilter = "all";
@@ -23,7 +31,7 @@ async function loadDates() {
 
     if (error) {
         console.error(error);
-        datesList.innerHTML = "<p>Could not load dates.</p>";
+        datesList.innerHTML = "<p>Não foi possível carregar dates.</p>";
         return;
     }
 
@@ -47,7 +55,7 @@ function updateCounter() {
     const total = allDates.length;
 
     dateCounter.textContent =
-        `${completed} / ${total} experiences completed`;
+        `${completed} / ${total} quadrinhos marcados`;
 }
 
 
@@ -73,10 +81,10 @@ function renderDates() {
 
     if (search) {
         dates = dates.filter(date =>
-            date.title.toLowerCase().includes(search) ||
-            date.description.toLowerCase().includes(search) ||
-            date.category.toLowerCase().includes(search)
-        );
+        (date.title || "").toLowerCase().includes(search) ||
+        (date.description || "").toLowerCase().includes(search) ||
+        (date.category || "").toLowerCase().includes(search)
+         );
     }
 
     // Sort
@@ -116,7 +124,7 @@ function renderDates() {
     if (dates.length === 0) {
         datesList.innerHTML = `
             <p class="empty">
-                No dates found 💭
+                Não foram encontrados dates.
             </p>
         `;
 
@@ -128,6 +136,112 @@ function renderDates() {
         .map(date => createDateCard(date))
         .join("");
 }
+
+
+toggleAddDate.addEventListener("click", () => {
+    addDateForm.classList.toggle("hidden");
+
+    if (!addDateForm.classList.contains("hidden")) {
+        newTitle.focus();
+    }
+});
+
+cancelAddDate.addEventListener("click", () => {
+    addDateForm.classList.add("hidden");
+    addDateForm.reset();
+});
+
+addDateForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    const title = newTitle.value.trim();
+    const description = newDescription.value.trim();
+    const category = newCategory.value.trim();
+    const location = newLocation.value.trim();
+
+    if (!title) {
+        alert("Por favor adicione uma ideia");
+        return;
+    }
+
+    const { data, error } = await supabase
+        .from("dates")
+        .insert({
+            title: title,
+            description: description,
+            category: category || null,
+            status: "planned",
+            completed_at: null,
+            location: location || null
+        })
+        .select()
+        .single();
+
+    if (error) {
+        console.error(error);
+        alert("Não foi possível adicionar esse date");
+        return;
+    }
+
+    // Adiciona imediatamente à lista local
+    allDates.push(data);
+
+    // Atualiza a página
+    updateCounter();
+    renderDates();
+
+    // Limpa o formulário
+    addDateForm.reset();
+    addDateForm.classList.add("hidden");
+
+});
+
+async function deleteDate(id) {
+
+    const date = allDates.find(item => item.id === id);
+
+    if (!date) return;
+
+    const confirmed = confirm(
+        `Apagar "${date.title}"?\n\nIsso não pode ser desfeito.`
+    );
+
+    if (!confirmed) return;
+
+    const { error } = await supabase
+        .from("dates")
+        .delete()
+        .eq("id", id);
+
+    if (error) {
+        console.error(error);
+        alert("Não foi possível apagar esse date.");
+        return;
+    }
+
+    // Remove da lista local
+    allDates = allDates.filter(item => item.id !== id);
+
+    // Atualiza a interface
+    updateCounter();
+    renderDates();
+}
+
+document.querySelectorAll(".delete-button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const id = Number(button.dataset.id);
+
+        deleteDate(id);
+
+    });
+
+});
+
+
+
 
 
 // ===============================
@@ -173,7 +287,7 @@ function createDateCard(date) {
                 </div>
 
             </div>
-
+            
             <button
                 class="complete-button"
                 data-id="${date.id}"
@@ -184,7 +298,7 @@ function createDateCard(date) {
                     : "✓ Done"
                 }
             </button>
-
+            <button class="delete-button" data-id="${date.id}">🗑️</button>
         </article>
     `;
 }
@@ -211,11 +325,31 @@ function formatDate(date) {
 
 datesList.addEventListener("click", async (event) => {
 
-    const button = event.target.closest(".complete-button");
+    // =========================
+    // BOTÃO APAGAR
+    // =========================
 
-    if (!button) return;
+    const deleteButton = event.target.closest(".delete-button");
 
-    const id = Number(button.dataset.id);
+    if (deleteButton) {
+
+        const id = Number(deleteButton.dataset.id);
+
+        await deleteDate(id);
+
+        return;
+    }
+
+
+    // =========================
+    // BOTÃO DONE / UNDO
+    // =========================
+
+    const completeButton = event.target.closest(".complete-button");
+
+    if (!completeButton) return;
+
+    const id = Number(completeButton.dataset.id);
 
     const date = allDates.find(
         date => date.id === id
@@ -243,13 +377,12 @@ datesList.addEventListener("click", async (event) => {
 
     if (error) {
         console.error(error);
-        alert("Could not update the date.");
+        alert("Não foi possível atualizar o date.");
         return;
     }
 
     await loadDates();
 });
-
 
 // ===============================
 // FILTERS
@@ -316,7 +449,7 @@ function pickRandomDate() {
     if (availableDates.length === 0) {
 
         alert(
-            "You've done every date! ❤️"
+            "Você fez todos os dates!!"
         );
 
         return;
@@ -341,7 +474,7 @@ function pickRandomDate() {
 function showRandomDate(date) {
 
     alert(
-        `🎲 Your date:\n\n${date.title}\n\n${date.description}`
+        `Seu date::\n\n${date.title}\n\n${date.description}`
     );
 }
 

@@ -26,12 +26,12 @@
     <main class="dates-page">
 
         <header class="dates-header">
-            <h1>Our Dates 💕</h1>
-            <p id="dateCounter">Loading...</p>
+            <h1>Nossos Dates 💕</h1>
+            <p id="dateCounter">Carregando...</p>
         </header>
 
         <button id="randomDateBtn" class="random-button">
-            🎲 Pick a random date
+            🎲 Escolher um date aleatório
         </button>
 
         <div class="filters">
@@ -39,33 +39,89 @@
             <input
                 type="text"
                 id="searchInput"
-                placeholder="Search dates..."
+                placeholder="Pesquisar dates..."
             >
 
             <div class="filter-buttons">
                 <button class="filter active" data-filter="all">
-                    All
+                    Todos
                 </button>
 
                 <button class="filter" data-filter="planned">
-                    To do
+                    A fazer
                 </button>
 
                 <button class="filter" data-filter="done">
-                    Done
+                    Feitos
                 </button>
             </div>
 
             <select id="sortSelect">
-                <option value="title">Alphabetical</option>
-                <option value="category">Category</option>
+                <option value="title">Alfabética</option>
+                <option value="category">Categoria</option>
                 <option value="status">Status</option>
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
+                <option value="newest">Mais recente</option>
+                <option value="oldest">Mais antigo</option>
             </select>
 
         </div>
+        <section class="add-date-section">
 
+    <button id="toggleAddDate" class="add-date-toggle">
+        ＋ Add a new date
+    </button>
+
+    <form id="addDateForm" class="add-date-form hidden">
+
+        <h2>Novo date</h2>
+
+        <input
+            type="text"
+            id="newTitle"
+            placeholder="Ideia de date"
+            required
+        >
+
+        <textarea
+            id="newDescription"
+            placeholder="Descreva a experiência..."
+            rows="3"
+        ></textarea>
+
+        <input
+            type="text"
+            id="newCategory"
+            placeholder="Categoria"
+        >
+
+        <input
+            type="text"
+            id="newLocation"
+            placeholder="Locatlização (opcional)"
+        >
+
+        <div class="form-buttons">
+
+            <button
+                type="button"
+                id="cancelAddDate"
+                class="cancel-button"
+            >
+                Cancelar
+            </button>
+
+            <button
+                type="submit"
+                class="save-button"
+            >
+                Salvar date
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
         <section id="datesList" class="dates-list">
             <!-- Dates will be inserted here -->
         </section>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style/index.css">
-    <script src="./script/index.js"></script>
+    <script type="module" src="./script/index.js"></script>
     <script type="module" src="script/auth.js"></script>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#e8b4b8">
@@ -92,6 +92,26 @@
                     <p>Depois de algum tempo planejando a tarefa que ia ser para fazer essa surpresa, o dia mais memorável da nossa história finalmente chegou. O dia que me tornei uma pessoa cada vez mais feliz e pude dizer que tenho a melhor namorada do mundo.</p>
                 </div>
             </div>
+        </div>
+        <div class="dates">
+            <h2>Também não podemos esquecer de viver novas experiências...</h2>
+            <div class="datesSistema">
+                <p>Até hoje, já foram</p>
+                <div class="contagemDates">
+                    <p><span class="datesFeitos" id="datesFeitos">X</span>/<span class="datesTotais" id="datesTotais">X</span> </p>
+                </div>
+                <p>dates feitos. Ou melhor, quadrinhos marcados...</p>
+                <h3>Que tal experimentar um novo?</h3>
+                <button id="randomDateHome" class="new-random-button">Sortear um aleatório</button>
+                <div id="randomDateResult" class="random-date-result hidden">
+                <span class="random-date-category" id="randomDateCategory"></span>
+                <h4 id="randomDateTitle"></h4>
+                <p id="randomDateDescription"></p>
+                <button id="newRandomDate" class="new-random-button">Sortear outro ♡</button>
+            </div>
+            <a class="openDates" href="./dates.html">Ver todos os dates →</a>
+            </div>
+            
         </div>
     </div>
 

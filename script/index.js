@@ -1,3 +1,5 @@
+import { supabase } from "./supabase.js";
+
 const DATA_NAMORO = "2026-09-12";
 const DATA_VISTA = "2024-04-13";
 const DATA_BEIJO = "2026-08-07";
@@ -10,6 +12,13 @@ const FRASES = [
     "O nosso amor é a coisa mais bonita que eu já vivi.",
     "Um cantinho especial para guardar nossa história."
 ];
+const randomDateHome = document.getElementById("randomDateHome");
+const randomDateResult = document.getElementById("randomDateResult");
+const randomDateCategory = document.getElementById("randomDateCategory");
+const randomDateTitle = document.getElementById("randomDateTitle");
+const randomDateDescription = document.getElementById("randomDateDescription");
+const newRandomDate = document.getElementById("newRandomDate");
+
 
 
 function calcularDias() {
@@ -30,8 +39,72 @@ function alternarFrases() {
     el.textContent = FRASES[indice];
 }
 
+async function loadDates() {
+    const { count, error } = await supabase
+    .from("dates")
+    .select("*", {
+        count: "exact",
+        head: true
+    })
+    .eq("status", "done");
+
+    document.getElementById("datesFeitos")
+        .textContent = count;
+
+    const { count: total } = await supabase
+        .from("dates")
+        .select("*", {
+            count: "exact",
+            head: true
+        });
+
+    document.getElementById("datesTotais")
+        .textContent = total;
+}
+
+
+async function pickRandomDateHome() {
+
+    const { data, error } = await supabase
+        .from("dates")
+        .select("*")
+        .eq("status", "planned");
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        randomDateTitle.textContent = "Vocês já fizeram todos! ❤️";
+        randomDateDescription.textContent =
+            "Parece que está na hora de criar novas experiências.";
+        randomDateResult.classList.remove("hidden");
+        return;
+    }
+
+    const randomIndex = Math.floor(
+        Math.random() * data.length
+    );
+
+    const selected = data[randomIndex];
+
+    showRandomDate(selected);
+}
+
+function showRandomDate(date) {
+    randomDateCategory.textContent = date.category || "Experiência";
+    randomDateTitle.textContent = date.title;
+    randomDateDescription.textContent =
+        date.description || "Uma nova experiência para vocês viverem juntos. ♡";
+    randomDateResult.classList.remove("hidden");
+}
+
 window.addEventListener("load", calcularDias);
 window.addEventListener("load", alternarFrases);
+window.addEventListener("load", loadDates);
+randomDateHome.addEventListener("click", pickRandomDateHome);
+newRandomDate.addEventListener("click", pickRandomDateHome);
 
 async function sair() {
     await supabase.auth.signOut();
