@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <script src="./script/dates.js"></script>
+    <script type="module" src="script/auth.js"></script>
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#e8b4b8">
+    <link rel="icon" type="image/x-icon" href="/assets/icon-192.png">
+    <!-- Compatibilidade com iPhone -->
+    <link rel="apple-touch-icon" href="./assets/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Nós">
+    <!-- Compatibilidade com Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Nossos Dates 💕</title>
+
+    <link rel="stylesheet" href="./style/dates.css">
+</head>
+
+<body>
+
+    <main class="dates-page">
+
+        <header class="dates-header">
+            <h1>Our Dates 💕</h1>
+            <p id="dateCounter">Loading...</p>
+        </header>
+
+        <button id="randomDateBtn" class="random-button">
+            🎲 Pick a random date
+        </button>
+
+        <div class="filters">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search dates..."
+            >
+
+            <div class="filter-buttons">
+                <button class="filter active" data-filter="all">
+                    All
+                </button>
+
+                <button class="filter" data-filter="planned">
+                    To do
+                </button>
+
+                <button class="filter" data-filter="done">
+                    Done
+                </button>
+            </div>
+
+            <select id="sortSelect">
+                <option value="title">Alphabetical</option>
+                <option value="category">Category</option>
+                <option value="status">Status</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+
+        </div>
+
+        <section id="datesList" class="dates-list">
+            <!-- Dates will be inserted here -->
+        </section>
+
+    </main>
+
+    <script type="module" src="./script/dates.js"></script>
+
+</body>
+</html>
