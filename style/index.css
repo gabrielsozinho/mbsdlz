@@ -27,6 +27,20 @@ body, html{
 }
 
 /* Configuração individual para parecer aleatório */
+.coracoes {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
 .coracao:nth-child(1) { left: 10%; font-size: 30px; animation-duration: 6s; animation-delay: 0s; }
 .coracao:nth-child(2) { left: 25%; font-size: 18px; animation-duration: 9s; animation-delay: 2s; }
 .coracao:nth-child(3) { left: 40%; font-size: 25px; animation-duration: 7s; animation-delay: 1s; }
@@ -198,6 +212,7 @@ body, html{
 }
 
 .dates{
+    padding-top: 150px;
     padding-bottom: 1000px;
 }
 
@@ -207,7 +222,6 @@ body, html{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 150px;
     margin-bottom: 150px;
     margin-left: 20px;
     margin-right: 20px;
