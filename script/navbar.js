@@ -1,3 +1,5 @@
+import { supabase } from "./supabase.js";
+
 document.getElementById("navbar").innerHTML = `
     <div class="menu-overlay" id="menuOverlay">
         <button class="menu-close" id="menuClose" aria-label="Fechar menu">×</button>
@@ -11,8 +13,10 @@ document.getElementById("navbar").innerHTML = `
             <a href="filmes.html">Filmes</a>
             <a href="mensagens.html">Mensagens</a>
             <a href="fotos.html">Fotos</a>
-
+            <a class="logout" id="logoutButton">Sair</a>
         </div>
+
+        
     </div>
 
     <div class="bottomNav">
@@ -51,3 +55,11 @@ menuClose.addEventListener("click", () => {
     menuOverlay.classList.remove("active");
     document.body.style.overflow = "";
 });
+
+document.getElementById("logoutButton").addEventListener("click", sair);
+
+async function sair() {
+  await supabase.auth.signOut();
+
+  window.location.href = "login.html";
+}
