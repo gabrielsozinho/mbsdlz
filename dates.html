@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-    <script src="./script/dates.js"></script>
+    <script type="module" src="./script/dates.js"></script>
     <script type="module" src="script/auth.js"></script>
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#e8b4b8">
@@ -87,21 +87,17 @@
             placeholder="Descreva a experiência..."
             rows="3"
         ></textarea>
-
         <input
             type="text"
             id="newCategory"
             placeholder="Categoria"
         >
-
         <input
             type="text"
             id="newLocation"
             placeholder="Locatlização (opcional)"
         >
-
         <div class="form-buttons">
-
             <button
                 type="button"
                 id="cancelAddDate"
@@ -109,25 +105,23 @@
             >
                 Cancelar
             </button>
-
             <button
                 type="submit"
                 class="save-button"
             >
                 Salvar date
             </button>
-
         </div>
-
     </form>
 
 </section>
         <section id="datesList" class="dates-list">
             <!-- Dates will be inserted here -->
         </section>
-
+        <div id="navbar"></div>
     </main>
-
+    
+    <script src="./script/navbar.js"></script>
     <script type="module" src="./script/dates.js"></script>
 
 </body>

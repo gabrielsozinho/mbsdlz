@@ -18,20 +18,6 @@ const randomDateCategory = document.getElementById("randomDateCategory");
 const randomDateTitle = document.getElementById("randomDateTitle");
 const randomDateDescription = document.getElementById("randomDateDescription");
 const newRandomDate = document.getElementById("newRandomDate");
-const menuButton = document.getElementById("menuButton");
-const menuClose = document.getElementById("menuClose");
-const menuOverlay = document.getElementById("menuOverlay");
-
-menuButton.addEventListener("click", () => {
-    menuOverlay.classList.add("active");
-    document.body.style.overflow = "hidden";
-});
-
-menuClose.addEventListener("click", () => {
-    menuOverlay.classList.remove("active");
-    document.body.style.overflow = "";
-});
-
 
 function calcularDias() {
     const hoje = new Date();
