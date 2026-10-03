@@ -1,0 +1,280 @@
+header{
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+    text-align: center;
+    display: grid;
+    align-items: center;
+}
+
+header h1{
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+main{
+    padding-bottom: 400px;
+}
+
+.secao{
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.grid-cartas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-carta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    background: var(--card);
+    border: 1px solid #f0dddd;
+    border-radius: 18px;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(80, 50, 50, 0.05);
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.card-carta:active {
+    transform: scale(0.98);
+}
+
+.icone-carta {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fbe8e8;
+    border-radius: 14px;
+    font-size: 23px;
+}
+
+.informacoes-carta {
+    min-width: 0;
+}
+
+.informacoes-carta h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: #49393b;
+    margin-bottom: 3px;
+}
+
+.informacoes-carta p {
+    font-size: 12px;
+    color: #9a7d80;
+    margin-bottom: 7px;
+}
+
+.status {
+    font-size: 11px;
+}
+
+
+.disponivel {
+    color: var(--success);
+}
+
+.bloqueada {
+    color: #a58b8e;
+}
+
+.btn-nova-carta {
+    margin-left: 48vw;
+    margin-right: 2vw;
+    width: 50vw;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    background: var(--primary-dark);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow:
+        0 7px 25px rgba(150, 90, 100, 0.25);
+}
+
+.btn-nova-carta span {
+    font-size: 18px;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: rgba(50, 35, 35, 0.35);
+    padding: 12px;
+}
+
+.escondido {
+    display: none;
+}
+
+.modal-conteudo {
+    position: relative;
+    width: min(100%, 600px);
+    max-height: 92vh;
+    overflow-y: auto;
+    padding: 30px 22px;
+    background: #fffaf8;
+    border-radius: 25px 25px 15px 15px;
+    box-shadow:
+        0 -5px 40px rgba(60, 40, 40, 0.15);
+    margin-bottom: 100px;
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 25px;
+    font-size: 25px;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    color: #9d8184;
+    cursor: pointer;
+}
+
+#formCarta {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+#formCarta label {
+    font-size: 12px;
+    color: #765f62;
+    margin-top: 10px;
+}
+
+#formCarta input[type="text"],
+#formCarta input[type="date"],
+#formCarta textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #ecdada;
+    border-radius: 12px;
+    background: white;
+    color: #4a3a3c;
+    outline: none;
+    font-size: 14px;
+}
+
+#formCarta textarea {
+    resize: vertical;
+    line-height: 1.6;
+}
+
+#formCarta input:focus,
+#formCarta textarea:focus {
+    border-color: #c98e95;
+}
+
+
+/* OPÇÕES */
+
+.opcoes {
+    display: flex;
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.opcao {
+    margin: 0 !important;
+
+    cursor: pointer;
+}
+
+.opcao input {
+    display: none;
+}
+
+.opcao span {
+    display: block;
+    padding: 9px 13px;
+    border-radius: 20px;
+    background: #f6eaea;
+    color: var(--text);
+    font-size: 12px;
+}
+
+.opcao:has(input:checked) span {
+    background: #e5b8bd;
+    color: var(--primary-dark);
+}
+
+
+/* SALVAR */
+
+.btn-salvar {
+    margin-top: 18px;
+
+    border: none;
+
+    padding: 14px;
+
+    border-radius: 13px;
+
+    background: var(--primary-dark);
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+
+/* LEITURA */
+
+.leitura {
+    padding: 35px 25px;
+}
+
+.texto-carta {
+    white-space: pre-wrap;
+
+    line-height: 1.8;
+
+    font-family: Georgia, serif;
+
+    font-size: 16px;
+
+    color: #554346;
+}
+
+
+/* ESTADOS */
+
+.carregando,
+.mensagem-vazia,
+.mensagem-erro {
+    padding: 20px;
+
+    text-align: center;
+
+    color: #a88d90;
+
+    font-size: 13px;
+}
