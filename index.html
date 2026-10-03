@@ -113,14 +113,26 @@
                 <button id="newRandomDate" class="new-random-button">Sortear outro ♡</button>
             </div>
             <a class="openDates" href="./dates.html">Ver todos os dates →</a>
-            </div>
-            
+            </div>    
         </div>
+
+        <div class="cartas">
+            <h2>Escrevi também algumas cartas para quando você precisar...</h2>
+            <section class="cartasInicio">
+                <div id="cartasHome">
+                    <p>Carregando cartas...</p>
+                </div>
+                <a href="mensagens.html" class="openDates">
+                    Ver todas as mensagens →
+                </a>
+            </section>
+        </div>
+
     </div>
 
     
     <div id="navbar"></div>
-    <script src="./script/navbar.js"></script>
+    <script type="module" src="./script/navbar.js"></script>
     <script>
     if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {

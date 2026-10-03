@@ -173,7 +173,6 @@ body, html{
 
 .dates{
     padding-top: 150px;
-    padding-bottom: 1000px;
 }
 
 .datesSistema{
@@ -294,3 +293,23 @@ body, html{
     color: black;
     padding-top: 5%;
 }
+
+.cartas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 150px;
+}
+
+.card-carta-home{
+    background-color: var(--card);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90vw;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 20px;
+}
+
