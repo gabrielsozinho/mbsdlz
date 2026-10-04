@@ -115,9 +115,12 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 28px;
     box-shadow: 0 18px 40px -16px rgba(77, 22, 40, 0.4);
+    transition: transform 0.3s ease;
 }
 
-
+.navbar.hidden {
+    transform: translateY(150%);
+}
 
 .bottomNavItem {
     display: flex;

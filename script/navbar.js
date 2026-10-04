@@ -19,7 +19,7 @@ document.getElementById("navbar").innerHTML = `
         
     </div>
 
-    <div class="bottomNav">
+    <div class="bottomNav navbar">
         <div class="bottomNavItem">
             <a href="./index.html">
                 <img src="assets/home.svg" alt="Inicio">
@@ -63,3 +63,25 @@ async function sair() {
 
   window.location.href = "login.html";
 }
+
+
+const navbar = document.querySelector(".navbar");
+
+let ultimaPosicao = window.scrollY;
+
+window.addEventListener("scroll", () => {
+    const posicaoAtual = window.scrollY;
+    const diferenca = posicaoAtual - ultimaPosicao;
+
+    if (posicaoAtual <= 0) {
+        navbar.classList.remove("hidden");
+    } 
+    else if (diferenca > 10) {
+        navbar.classList.add("hidden");
+        ultimaPosicao = posicaoAtual;
+    } 
+    else if (diferenca < -10) {
+        navbar.classList.remove("hidden");
+        ultimaPosicao = posicaoAtual;
+    }
+});
