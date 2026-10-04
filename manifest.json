@@ -3,7 +3,7 @@
   "name": "MBS ♥ DLZ",
   "short_name": "Nós",
   "description": "Um cantinho especial para guardar nossa história.",
-  "start_url": "/login.html",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#fff8f5",

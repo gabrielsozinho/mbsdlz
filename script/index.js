@@ -2,7 +2,7 @@ import { supabase } from "./supabase.js";
 
 const USUARIOS = {
   "af1ca81f-2daa-4fd2-81e9-7e64103de255": "gabriel",
-  "18143036-e357-4e3b-94f9-e298c1539335": "maria",
+  "452132fd-4c0c-4d30-a09f-a07e0967d475": "maria",
 };
 const DATA_NAMORO = "2026-09-12";
 const DATA_VISTA = "2024-04-13";
@@ -261,3 +261,105 @@ window.addEventListener("load", loadDates);
 randomDateHome.addEventListener("click", pickRandomDateHome);
 newRandomDate.addEventListener("click", pickRandomDateHome);
 
+const pilhaFotos = document.getElementById("pilhaFotos");
+
+let fotosIndex = [];
+let indiceAtual = 0;
+
+async function carregarFotosIndex() {
+    const { data: fotos, error } = await supabase
+        .from("fotos")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(4);
+
+    if (error) {
+        console.error("Erro ao carregar fotos:", error);
+        return;
+    }
+
+    fotosIndex = fotos;
+    pilhaFotos.innerHTML = "";
+
+    for (const foto of fotosIndex) {
+        const { data, error: erroUrl } = await supabase
+            .storage
+            .from("fotos")
+            .createSignedUrl(foto.caminho, 60 * 60);
+
+        if (erroUrl) {
+            console.error(erroUrl);
+            continue;
+        }
+
+        const elemento = document.createElement("div");
+        elemento.className = "foto-pilha";
+
+        const imagem = document.createElement("img");
+        imagem.src = data.signedUrl;
+        imagem.alt = foto.descricao || "Foto especial";
+
+        elemento.appendChild(imagem);
+
+        pilhaFotos.appendChild(elemento);
+    }
+
+    atualizarPilha();
+}
+
+function atualizarPilha() {
+    const fotos = pilhaFotos.querySelectorAll(".foto-pilha");
+
+    fotos.forEach((foto, index) => {
+        foto.style.zIndex = fotos.length - index;
+
+        // Cada foto fica um pouco deslocada/rotacionada
+        if (index === 0) {
+            foto.style.transform =
+                "translate(-50%, -50%) rotate(-7deg)";
+        } else if (index === 1) {
+            foto.style.transform =
+                "translate(-50%, -50%) rotate(5deg)";
+        } else if (index === 2) {
+            foto.style.transform =
+                "translate(-50%, -50%) rotate(-2deg)";
+        } else {
+            foto.style.transform =
+                "translate(-50%, -50%) rotate(7deg)";
+        }
+    });
+
+    // Só a foto da frente recebe o clique
+    fotos.forEach((foto, index) => {
+        foto.onclick = null;
+
+        if (index === 0) {
+            foto.onclick = passarProximaFoto;
+        }
+    });
+}
+
+function passarProximaFoto() {
+    const fotos = pilhaFotos.querySelectorAll(".foto-pilha");
+
+    if (fotos.length <= 1) return;
+
+    const primeira = fotos[0];
+
+    // Anima a foto saindo
+    primeira.style.transform =
+        "translate(-50%, -80%) rotate(15deg)";
+    primeira.style.opacity = "0";
+
+    setTimeout(() => {
+        // Coloca a primeira foto no final da pilha
+        pilhaFotos.appendChild(primeira);
+
+        // Reseta a posição
+        primeira.style.opacity = "1";
+
+        atualizarPilha();
+    }, 300);
+}
+
+carregarFotosIndex();
