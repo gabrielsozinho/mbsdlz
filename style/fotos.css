@@ -248,7 +248,7 @@ main{
     padding: 12px 14px;
 
     border: 1px solid 20px;
-    border-radius: var(--radius-md);
+    border-radius: 20px;
 
     background: white;
 
@@ -402,7 +402,7 @@ main{
     padding: 11px 16px;
 
     border: 1px solid #d8a5ad;
-    border-radius: var(--radius-md);
+    border-radius: 20px;
 
     background: transparent;
 

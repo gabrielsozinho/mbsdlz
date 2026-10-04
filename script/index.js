@@ -363,3 +363,63 @@ function passarProximaFoto() {
 }
 
 carregarFotosIndex();
+
+const filmesHomeLista = document.getElementById("filmesHomeLista");
+
+async function carregarFilmesHome() {
+    const { data: filmes, error } = await supabase
+        .from("filmes")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+    if (error) {
+        console.error("Erro ao carregar filmes:", error);
+        return;
+    }
+
+    filmesHomeLista.innerHTML = "";
+
+    if (!filmes || filmes.length === 0) {
+        filmesHomeLista.innerHTML = `
+            <p class="mensagem-vazia">
+                Ainda estamos começando nossa coleção 🎬
+            </p>
+        `;
+        return;
+    }
+
+    filmes.forEach(filme => {
+        const card = document.createElement("div");
+        card.className = "filme-home-card";
+
+        const poster = document.createElement("img");
+        poster.className = "filme-home-poster";
+        poster.src = filme.poster_path
+            ? `https://image.tmdb.org/t/p/w500${filme.poster_path}`
+            : "img/sem-poster.jpg";
+        poster.alt = filme.titulo;
+
+        const titulo = document.createElement("p");
+        titulo.className = "filme-home-titulo";
+        titulo.textContent = filme.titulo;
+
+        const nota = document.createElement("p");
+        nota.className = "filme-home-nota";
+        nota.textContent = filme.nota
+            ? `★ ${filme.nota}/5`
+            : "Sem nota";
+
+        card.appendChild(poster);
+        card.appendChild(titulo);
+        card.appendChild(nota);
+
+        card.addEventListener("click", () => {
+            window.location.href = `filmes.html?id=${filme.id}`;
+        });
+
+        filmesHomeLista.appendChild(card);
+    });
+}
+
+carregarFilmesHome();

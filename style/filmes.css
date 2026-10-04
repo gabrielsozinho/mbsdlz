@@ -1,0 +1,716 @@
+header{
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+    text-align: center;
+    display: grid;
+    align-items: center;
+}
+
+header h1{
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+main{
+    padding-bottom: 400px;
+}
+
+.containerButao {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filmes-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 20px 80px;
+}
+
+.filmes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 35px;
+}
+
+.filmes-legenda {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.filmes-header h1 {
+    margin: 8px 0 10px;
+    color: var(--wine);
+    font-size: 2.2rem;
+}
+
+.filmes-header p {
+    margin: 0;
+    color: var(--text-soft);
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+.btn-adicionar-filme {
+    border: none;
+    border-radius: 20px;
+    padding: 12px 18px;
+
+    background: var(--primary);
+    color: white;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-adicionar-filme:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   CONTROLES
+========================= */
+
+.filmes-controles {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+}
+
+#filtroFilmes {
+    padding: 10px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    background: var(--card);
+    color: var(--text);
+
+    font-family: inherit;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.lista-filmes {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
+    gap: 25px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.filme-card {
+    background: var(--card);
+
+    border-radius: var(--radius-lg);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(80, 40, 50, 0.08);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.filme-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(80, 40, 50, 0.15);
+}
+
+
+.filme-poster {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+.filme-card-info {
+    padding: 14px;
+}
+
+
+.filme-card-info h3 {
+    margin: 0 0 5px;
+
+    color: var(--wine);
+
+    font-size: 1rem;
+}
+
+
+.filme-ano {
+    margin: 0 0 8px;
+
+    color: var(--text-soft);
+
+    font-size: 0.82rem;
+}
+
+
+.filme-nota {
+    color: var(--gold);
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+
+/* =========================
+   MODAL ADICIONAR
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    background: rgba(40, 25, 30, 0.55);
+
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+    background: var(--bg);
+    border: black;
+}
+
+/* Caixa branca do modal */
+
+.modal-content {
+    position: relative;
+    width: min(92vw, 550px);
+    max-height: 85vh;
+    box-sizing: border-box;
+    padding: 30px;
+    background: var(--card);
+    border-radius: 28px;
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.fecharModal {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--bg-soft);
+    color: var(--text-soft);
+
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+
+.modal-filme {
+    width: min(92vw, 550px);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 30px;
+}
+
+.modal-detalhes-filme {
+    margin-bottom: 70px;
+}
+
+
+.campo-pesquisa-filme {
+    position: relative;
+}
+
+
+#inputBuscaFilme {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: 0.95rem;
+
+    outline: none;
+}
+
+
+#inputBuscaFilme:focus {
+    border-color: var(--primary);
+}
+
+
+/* =========================
+   RESULTADOS API
+========================= */
+
+.resultados-filmes {
+    position: absolute;
+
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+
+    max-height: 280px;
+
+    overflow-y: auto;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 35px rgba(60, 30, 40, 0.15);
+
+    z-index: 30;
+}
+
+
+.resultado-filme {
+    display: flex;
+
+    gap: 12px;
+
+    padding: 10px;
+
+    cursor: pointer;
+
+    transition: background 0.15s;
+}
+
+
+.resultado-filme:hover {
+    background: var(--bg-soft);
+}
+
+
+.resultado-filme img {
+    width: 45px;
+    height: 65px;
+
+    object-fit: cover;
+
+    border-radius: 5px;
+}
+
+
+.resultado-filme-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.resultado-filme-info strong {
+    color: var(--text);
+
+    font-size: 0.9rem;
+}
+
+
+.resultado-filme-info span {
+    margin-top: 4px;
+
+    color: var(--text-soft);
+
+    font-size: 0.78rem;
+}
+
+
+/* =========================
+   FILME SELECIONADO
+========================= */
+
+.filme-selecionado {
+    display: none;
+
+    gap: 18px;
+
+    margin-top: 25px;
+    padding: 15px;
+
+    background: var(--bg);
+
+    border-radius: var(--radius-lg);
+}
+
+
+.filme-selecionado.visivel {
+    display: flex;
+}
+
+
+.filme-selecionado img {
+    width: 90px;
+    height: 130px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+}
+
+
+.filme-selecionado h3 {
+    margin: 5px 0 8px;
+
+    color: var(--wine);
+}
+
+
+.filme-selecionado p {
+    margin: 5px 0;
+
+    color: var(--text-soft);
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.campo-filme {
+    margin-top: 22px;
+}
+
+
+.campo-filme label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--text);
+
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+
+.campo-filme textarea,
+.campo-filme input[type="date"] {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    outline: none;
+}
+
+
+.campo-filme textarea {
+    min-height: 90px;
+
+    resize: vertical;
+}
+
+
+/* =========================
+   ESTRELAS
+========================= */
+
+.estrelas-nota {
+    display: flex;
+    gap: 3px;
+}
+
+
+.estrelas-nota button {
+    padding: 0;
+
+    border: none;
+
+    background: none;
+
+    color: #d9c5c9;
+
+    font-size: 2rem;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+
+.estrelas-nota button.ativa,
+.estrelas-nota button:hover {
+    color: var(--gold);
+}
+
+
+#textoNota {
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--text-soft);
+
+    font-size: 0.8rem;
+}
+
+
+/* =========================
+   SALVAR
+========================= */
+
+.btn-salvar-filme {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-family: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-salvar-filme:hover {
+    background: var(--primary-dark);
+}
+
+
+/* =========================
+   DETALHES
+========================= */
+
+.modal-detalhes-filme {
+    display: flex;
+
+    gap: 25px;
+
+    width: min(90vw, 700px);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 25px;
+}
+
+
+.detalhes-poster {
+    width: 220px;
+
+    height: 330px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    flex-shrink: 0;
+}
+
+
+.detalhes-conteudo {
+    flex: 1;
+}
+
+
+.detalhes-conteudo h2 {
+    margin: 5px 0 10px;
+
+    color: var(--wine);
+}
+
+
+#detalhesAno {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+}
+
+
+.detalhes-nota {
+    color: var(--gold);
+
+    margin: 10px 0;
+}
+
+
+.detalhes-sinopse {
+    color: var(--text-soft);
+
+    line-height: 1.6;
+}
+
+
+.detalhes-memoria {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: var(--bg);
+
+    border-radius: 20px;
+}
+
+
+.detalhes-memoria span {
+    color: var(--primary);
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+.detalhes-memoria p {
+    color: var(--text);
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .filmes-page {
+        padding-top: 35px;
+    }
+
+    .filmes-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filmes-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .lista-filmes {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 15px;
+    }
+
+    .modal-detalhes-filme {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detalhes-poster {
+        width: 160px;
+        height: 240px;
+    }
+
+}
+
+.btn-apagar {
+    width: 100%;
+
+    margin-top: 22px;
+    padding: 11px 16px;
+
+    border: 1px solid #e0b8bf;
+    border-radius: var(--radius-md);
+
+    background: transparent;
+
+    color: var(--wine);
+
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}

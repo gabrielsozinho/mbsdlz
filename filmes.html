@@ -2,44 +2,156 @@
 <html lang="pt-BR">
   <head>
     <link rel="stylesheet" href="./style/global.css" />
-    <link rel="stylesheet" href="./style/mensagens.css" />
+    <link rel="stylesheet" href="./style/filmes.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap"
       rel="stylesheet"
     />
-    <script type="module" src="./script/mensagens.js"></script>
+    <script type="module" src="./script/filmes.js"></script>
     <script type="module" src="./script/auth.js"></script>
     <link rel="manifest" href="./manifest.json" />
     <meta name="theme-color" content="#e8b4b8" />
     <link rel="icon" type="image/x-icon" href="/assets/icon-192.png" />
-    <title>Mensagens</title>
+    <title>Filmes</title>
   </head>
 
   <body>
     <div class="coracoes">
-        <div class="coracao">&hearts;</div>
-        <div class="coracao">&hearts;</div>
-        <div class="coracao">&hearts;</div>
-        <div class="coracao">&hearts;</div>
-        <div class="coracao">&hearts;</div>
-        <div class="coracao">&hearts;</div>
-        <div class="coracao">&hearts;</div>
-        <div class="coracao">&hearts;</div>
+      <div class="coracao">&hearts;</div>
+      <div class="coracao">&hearts;</div>
+      <div class="coracao">&hearts;</div>
+      <div class="coracao">&hearts;</div>
+      <div class="coracao">&hearts;</div>
+      <div class="coracao">&hearts;</div>
+      <div class="coracao">&hearts;</div>
+      <div class="coracao">&hearts;</div>
     </div>
     <header>
-        <div class="headerTexto">
-            <h1 class="titulo">Nossa história♥</h1>
-            <p class="subtitulo">Aqui vamos guardar nossos momentos especiais.</p>
+      <div class="headerTexto">
+        <h1 class="titulo">Filmes</h1>
+        <p class="subtitulo">
+          Aqui vamos guardar alguns dos filmes que já assistmos juntos.
+        </p>
+      </div>
+    </header>
+    <main>
+      <div class="containerButao">
+        <button id="btnAdicionarFilme" class="btn-adicionar-filme">
+          + Adicionar filme
+        </button>
+      </div>
+      <section class="filmes-controles">
+        <select id="filtroFilmes">
+          <option value="recentes">Mais recentes</option>
+          <option value="nota">Melhor avaliados</option>
+          <option value="titulo">Ordem alfabética</option>
+        </select>
+      </section>
+
+      <section id="listaFilmes" class="lista-filmes">
+        <!-- filmes aparecem aqui -->
+      </section>
+
+      <div id="modalAdicionarFilme" class="modal">
+        <div class="modal-content modal-filme">
+          <button id="fecharModalFilme" class="fecharModal">×</button>
+
+          <h2>Adicionar um filme ♡</h2>
+
+          <p class="modal-subtitulo">
+            Qual filme virou mais uma memória nossa?
+          </p>
+
+          <!-- PESQUISA -->
+
+          <div class="campo-pesquisa-filme">
+            <input
+              type="text"
+              id="inputBuscaFilme"
+              placeholder="Digite o nome do filme..."
+              autocomplete="off"
+            />
+
+            <div id="resultadosFilmes" class="resultados-filmes"></div>
+          </div>
+
+          <!-- FILME SELECIONADO -->
+
+          <div id="filmeSelecionado" class="filme-selecionado">
+            <img id="filmeSelecionadoPoster" src="" alt="" />
+
+            <div>
+              <h3 id="filmeSelecionadoTitulo"></h3>
+
+              <p id="filmeSelecionadoInfo"></p>
+
+              <p id="filmeSelecionadoDiretor"></p>
+            </div>
+          </div>
+
+          <!-- NOTA -->
+
+          <div class="campo-filme">
+            <label> Nossa nota </label>
+
+            <div id="estrelasNota" class="estrelas-nota">
+              <button data-nota="1">★</button>
+              <button data-nota="2">★</button>
+              <button data-nota="3">★</button>
+              <button data-nota="4">★</button>
+              <button data-nota="5">★</button>
+            </div>
+            <span id="textoNota"> Escolha uma nota </span>
+          </div>
+
+          <!-- DATA -->
+          <div class="campo-filme">
+            <label for="dataAssistido"> Quando assistimos? </label>
+            <input type="date" id="dataAssistido" />
+          </div>
+
+          <!-- COMENTÁRIO -->
+          <div class="campo-filme">
+            <label for="comentarioFilme"> Nossa memória </label>
+            <textarea
+              id="comentarioFilme"
+              placeholder="Alguma coisa que você queira lembrar sobre esse filme..."
+            ></textarea>
+          </div>
+          <button id="btnSalvarFilme" class="btn-salvar-filme">
+            Guardar filme ♡
+          </button>
         </div>
+      </div>
+
+      <!-- MODAL DETALHES -->
+
+      <div id="modalDetalhesFilme" class="modal">
+        <div class="modal-content modal-detalhes-filme">
+          <button id="fecharDetalhesFilme" class="fecharModal">×</button>
+          <img id="detalhesPoster" class="detalhes-poster" src="" alt="" />
+          <div class="detalhes-conteudo">
+            <span id="detalhesAno"></span>
+            <h2 id="detalhesTitulo"></h2>
+            <p id="detalhesDiretor"></p>
+            <div id="detalhesNota" class="detalhes-nota"></div>
+            <p id="detalhesSinopse" class="detalhes-sinopse"></p>
+            <div class="detalhes-memoria">
+              <span> Nossa memória </span>
+              <p id="detalhesComentario"></p>
+            </div>
+            <p id="detalhesData"></p>
+            <button id="btnApagarFilme" class="btn-apagar">Apagar filme</button>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <main>
-      
-      <div id="navbar"></div>
-      <script type="module" src="./script/navbar.js"></script>
+        <div id="navbar"></div>
+        <script type="module" src="./script/navbar.js"></script>
+        <script src="script/config.js"></script>
     </main>
-
   </body>
 </html>

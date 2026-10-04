@@ -430,3 +430,61 @@ body, html{
         height: 300px;
     }
 }
+
+.filmes-home-lista {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.filme-home-card {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.filme-home-card:hover {
+    transform: translateY(-4px);
+}
+
+.filme-home-poster {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 20px rgba(70, 40, 50, 0.15);
+}
+
+.filme-home-titulo {
+    margin: 8px 2px 2px;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filme-home-nota {
+    margin: 0 2px;
+    color: var(--gold);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 500px) {
+    .secao-cabecalho h2 {
+        font-size: 1.3rem;
+    }
+
+    .filmes-home-lista {
+        gap: 10px;
+    }
+}
+
+.filmes {
+    width: 90vw;
+    margin: 0 auto;
+
+    padding-bottom: 150px;
+}
