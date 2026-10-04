@@ -495,3 +495,9 @@ body, html{
 
     padding-bottom: 150px;
 }
+
+.fotoLetradeMusica{
+    margin-top: 20px;
+    width: 90vw;
+    border-radius: 28px;
+}
