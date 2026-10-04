@@ -135,57 +135,9 @@ async function adicionarFoto() {
 
     inputFoto.value = "";
     inputDescricao.value = "";
-
+    fecharModalAdicionar();
     await carregarFotos();
 }
-
-document.addEventListener("click", async (event) => {
-
-    if (!event.target.classList.contains("btn-apagar")) {
-        return;
-    }
-
-    const id =
-        event.target.dataset.id;
-
-    const caminho =
-        event.target.dataset.caminho;
-
-    const confirmar =
-        confirm("Quer mesmo apagar essa foto?");
-
-    if (!confirmar) {
-        return;
-    }
-
-    // Primeiro remove o arquivo
-    const { error: erroStorage } =
-        await supabase
-            .storage
-            .from("fotos")
-            .remove([caminho]);
-
-    if (erroStorage) {
-        console.error(erroStorage);
-        alert("Não foi possível apagar a foto.");
-        return;
-    }
-
-    // Depois remove o registro
-    const { error: erroBanco } =
-        await supabase
-            .from("fotos")
-            .delete()
-            .eq("id", id);
-
-    if (erroBanco) {
-        console.error(erroBanco);
-        alert("A foto foi removida do Storage, mas houve um erro no banco.");
-        return;
-    }
-
-    await carregarFotos();
-});
 
 const btnAdicionar = document.getElementById("btnAdicionar");
 const modalAdicionar = document.getElementById("modalAdicionar");
@@ -270,7 +222,6 @@ modalFoto.addEventListener("click", (event) => {
 });
 
 btnApagarFoto.addEventListener("click", async () => {
-
     if (!fotoSelecionada) {
         console.error("Nenhuma foto selecionada.");
         return;
@@ -288,7 +239,7 @@ btnApagarFoto.addEventListener("click", async () => {
     const confirmar = confirm("Tem certeza que quer apagar essa foto?");
 
     if (!confirmar) return;
-
+    
     // Apaga do Storage
     const { error: erroStorage } =
         await supabase
@@ -298,7 +249,8 @@ btnApagarFoto.addEventListener("click", async () => {
 
     if (erroStorage) {
         console.error("Erro no Storage:", erroStorage);
-        alert("Não foi possível apagar a foto.");
+        alert("Não foi possível apagar a foto do Storage.");
+        fecharFotoModal();
         return;
     }
 
@@ -311,6 +263,8 @@ btnApagarFoto.addEventListener("click", async () => {
 
     if (erroBanco) {
         console.error("Erro no banco:", erroBanco);
+        alert("Não foi possível apagar a foto do banco de dados.");
+        fecharFotoModal();
         return;
     }
 
