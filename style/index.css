@@ -299,7 +299,7 @@ body, html{
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding-bottom: 150px;
+    padding-bottom: 250px;
 }
 
 .card-carta-home{
@@ -314,7 +314,7 @@ body, html{
 }
 
 .fotos{
-    padding-bottom: 150px;
+    padding-bottom: 250px;
 }
 
 .noLink {
@@ -483,6 +483,13 @@ body, html{
 }
 
 .filmes {
+    width: 90vw;
+    margin: 0 auto;
+
+    padding-bottom: 250px;
+}
+
+.agradecimentos {
     width: 90vw;
     margin: 0 auto;
 
